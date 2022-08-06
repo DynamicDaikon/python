@@ -1,5 +1,6 @@
 # coding: UTF-8
 
+from curses import KEY_ENTER
 from selenium import webdriver
 import csv
 
@@ -7,7 +8,7 @@ import csv
 from webdriver_manager.chrome import ChromeDriverManager
 
 # ドライバー、URL登録
-# ドライバーは頻繁に更新入るので自動更新
+# TODO いったん自動ダウンロード固定
 driver = webdriver.Chrome(ChromeDriverManager().install())
 driver.get('https://www5.tenseidatanet.co.jp/cb2/office.cgi?')
 
@@ -17,8 +18,9 @@ password = driver.find_element_by_name('_Password')
 loginBtn = driver.find_element_by_name('_Submit')
 
 # 入力実行
+# TODO パスワード外部ファイル参照させたい。
 id.send_keys('上山拓馬')
-password.send_keys('tensei028@')
+password.send_keys('tensei032@')
 
 loginBtn.click()
 
@@ -40,7 +42,6 @@ for row in f:
 	'/html/body/form/table[2]/tbody/tr[2]/td[2]/a[2]')
 
 	form.click()
-
 
 	setStrtMonth = driver.find_element_by_xpath(
 	'/html/body/form/table/tbody/tr[1]/td[2]/select[1]')
@@ -81,6 +82,7 @@ for row in f:
 	setTask = driver.find_element_by_xpath(
 	'/html/body/form/table/tbody/tr[2]/td[2]/input')
 	setTask.send_keys(row[6])
+	# setTask.send_keys(KEY_ENTER)
 
 	submit = driver.find_element_by_xpath('/html/body/form/input[7]')
 	submit.click()
