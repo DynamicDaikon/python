@@ -29,7 +29,7 @@ schedule = driver.find_element_by_link_text("スケジュール")
 schedule.click()
 # csv ファイル読み込み
 csv_file = open(
-    "/Users/takumaueyama/git/python/seleniumSample/schedule.csv",
+    "/Users/takumaueyama/git/projects/python/seleniumSample/schedule.csv",
     "r",
     encoding="UTF-8",
     errors="",
